@@ -6,6 +6,9 @@ let badGuys;
 let badGuysStrength;
 const goodGuys = document.querySelector ('.js_select');
 let goodGuysStrength;
+const pointsGood = document.querySelector ('.js_good');
+const pointsBad = document.querySelector ('.js_bad');
+
 
 
 function getRandomNumber(max) {
@@ -35,6 +38,8 @@ function handlePlayBtn (){
     } else {
         message.innerHTML = 'Empate.'
     }
+    pointsBad.innerHTML = `Fuerza de la raza malvada: ${badGuysStrength}`;
+    pointsGood.innerHTML = `Fuerza de la raza bondadosa: ${goodGuysStrength}`;
 }
 
 playBtn.addEventListener('click',handlePlayBtn)

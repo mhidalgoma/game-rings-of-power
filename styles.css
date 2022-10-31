@@ -56,7 +56,7 @@ table {
 .aside {
     width: 25vw;
     height: 100vh;
-    background-color: bisque;
+    background-image: url("./images/rings.png");
 }
 
 .white {
