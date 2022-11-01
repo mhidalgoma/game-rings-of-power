@@ -29,9 +29,11 @@ function getSelectedGoodGuy(){
 }
 
 function handlePlayBtn (){
-    getRandomBadGuy();
     getSelectedGoodGuy();
-    if (goodGuysStrength > badGuysStrength) {
+    getRandomBadGuy();
+    if (goodGuysStrength === ''){
+        message.innerHTML = 'Selecciona una raza para poder jugar.'
+    }else if (goodGuysStrength > badGuysStrength) {
         message.innerHTML = '¡Ha ganado el ejército del bien! Enhorabuena.'
     }else if (goodGuysStrength < badGuysStrength) {
         message.innerHTML = '¡Ha ganado el ejército del mal! Vuelve a intentarlo.'
