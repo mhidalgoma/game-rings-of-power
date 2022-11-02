@@ -1,13 +1,11 @@
 'use strict';
-
+//Variables globales
 const playBtn = document.querySelector ('.js_play_bt');
-const message = document.querySelector ('.js_message');
-let badGuys;
-let badGuysStrength;
-const goodGuys = document.querySelector ('.js_select');
-let goodGuysStrength;
 const pointsGood = document.querySelector ('.js_good');
 const pointsBad = document.querySelector ('.js_bad');
+let badGuysStrength;
+let goodGuysStrength;
+
 
 
 
@@ -16,29 +14,39 @@ function getRandomNumber(max) {
   }
 
 function getRandomBadGuy(){
-    badGuys = getRandomNumber(5);
-    badGuys === 1 ? badGuysStrength = 2 : null;
-    badGuys === 2 ? badGuysStrength = 2 : null;
-    badGuys === 3 ? badGuysStrength = 2 : null;
-    badGuys === 4 ? badGuysStrength = 3 : null;
-    badGuys === 5 ? badGuysStrength = 5 : null;
+    let badGuys = getRandomNumber(5);
+    if (badGuys === 1 || badGuys === 2 || badGuys === 3) { 
+    badGuysStrength = 2
+    } else if (badGuys === 4) {
+    badGuysStrength = 3
+    } else {
+    badGuysStrength = 5
+    }
 }
+
 function getSelectedGoodGuy(){
+    const goodGuys = document.querySelector ('.js_select');
     goodGuysStrength = goodGuys.value;
     return goodGuysStrength; 
 }
 
-function handlePlayBtn (){
+function writeMessage (text) {
+    const message = document.querySelector ('.js_message');
+    message.innerHTML = text;
+}
+
+function handlePlayBtn (event){
+    event.preventDefault();
     getSelectedGoodGuy();
     getRandomBadGuy();
     if (goodGuysStrength === ''){
-        message.innerHTML = 'Selecciona una raza para poder jugar.'
+        writeMessage ('Selecciona una raza para poder jugar.')
     }else if (goodGuysStrength > badGuysStrength) {
-        message.innerHTML = '¡Ha ganado el ejército del bien! Enhorabuena.'
+        writeMessage ('¡Ha ganado el ejército del bien! Enhorabuena.')
     }else if (goodGuysStrength < badGuysStrength) {
-        message.innerHTML = '¡Ha ganado el ejército del mal! Vuelve a intentarlo.'
+        writeMessage ('¡Ha ganado el ejército del mal! Vuelve a intentarlo.')
     } else {
-        message.innerHTML = 'Empate.'
+        writeMessage ('Empate.')
     }
     pointsBad.innerHTML = `Fuerza de la raza malvada: ${badGuysStrength}`;
     pointsGood.innerHTML = `Fuerza de la raza bondadosa: ${goodGuysStrength}`;
